@@ -56,15 +56,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                if (mCurrentIndex == mQuestionBank.length-1){
+                    mNextButton.setEnabled(false);
+                }
+                if (mCurrentIndex != 0){
+                    mPreviousButton.setEnabled(true);
+                }
                 updateQuestion();
+
             }
         });
+        mPreviousButton.setEnabled(false);
+
         mPreviousButton = (Button) findViewById(R.id.previous_button);
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                updateQuestion();
+                if(mCurrentIndex == mQuestionBank.length){
+
+                }else {
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                    updateQuestion();
+                }
             }
         });
 
